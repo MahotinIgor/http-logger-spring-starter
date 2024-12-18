@@ -1,0 +1,95 @@
+{
+  "properties": [{
+    "name": "logger.enable",
+    "type": "java.lang.Boolean",
+    "defaultValue": true,
+    "description": "Enable/Disable logger."
+  },
+    {
+      "name": "logger.levels.aspect1",
+      "type": "java.lang.String",
+      "description": "Default level: INFO."
+
+    },
+    {
+      "name": "logger.levels.aspect2",
+      "type": "java.lang.String",
+      "description": "Default level: INFO."
+
+    }
+  ],
+
+  "hints": [
+    {
+      "name": "logger.enable",
+      "values": [
+        {
+          "value": true,
+          "description": "Logging is enable."
+        },
+        {
+          "value": false,
+          "description": "Logging is disabled."
+        }
+      ]
+    },
+    {
+      "name": "logger.levels.aspect1",
+      "values": [
+        {
+          "value": "TRACE",
+          "description": "Logging level is TRACE."
+        },
+        {
+          "value": "DEBUG",
+          "description": "Logging level is INFO."
+        },
+        {
+          "value": "INFO",
+          "description": "Logging level is INFO."
+        },
+        {
+          "value": "WARN",
+          "description": "Logging level is WARN."
+        },
+        {
+          "value": "ERROR",
+          "description": "Logging level is ERROR."
+        },
+        {
+          "value": "FATAL",
+          "description": "Logging level is FATAL."
+        }
+      ]
+    },
+    {
+      "name": "logger.levels.aspect2",
+      "values": [
+        {
+          "value": "TRACE",
+          "description": "Logging level is TRACE."
+        },
+        {
+          "value": "DEBUG",
+          "description": "Logging level is INFO."
+        },
+        {
+          "value": "INFO",
+          "description": "Logging level is INFO."
+        },
+        {
+          "value": "WARN",
+          "description": "Logging level is WARN."
+        },
+        {
+          "value": "ERROR",
+          "description": "Logging level is ERROR."
+        },
+        {
+          "value": "FATAL",
+          "description": "Logging level is FATAL."
+        }
+      ]
+    }
+  ]
+}
