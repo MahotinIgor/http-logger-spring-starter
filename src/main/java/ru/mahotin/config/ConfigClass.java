@@ -1,9 +1,8 @@
 package ru.mahotin.config;
 
-import jakarta.annotation.PostConstruct;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.logging.LogLevel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -14,34 +13,40 @@ import ru.mahotin.util.LogUtil;
 
 @Configuration
 @EnableConfigurationProperties(CustomProperties.class)
-@ConditionalOnClass(CustomProperties.class)
-@ConditionalOnProperty(prefix = "logger", name = "enable", havingValue = "true")
+
 public class ConfigClass {
+
+    private final CustomProperties customProperties;
+
+    public ConfigClass(CustomProperties customProperties) {
+        this.customProperties = customProperties;
+    }
 
     @Order(1)
     @Bean
+    @ConditionalOnProperty(prefix = "logger", name = "enable", havingValue = "true")
     TaskAspect taskAspect() {
-        return new TaskAspect(logUtil());
+        return new TaskAspect();
     }
+
     @Order(2)
     @Bean
+    @ConditionalOnProperty(prefix = "logger", name = "enable", havingValue = "true")
     TaskAspectSortingByOrder taskAspectSortingByOrder() {
         return new TaskAspectSortingByOrder();
+    }
+
+    @Bean
+    AspectLogHttpRequestParam aspectLogHttpRequestParam() {
+        LogLevel logLevel = customProperties
+                .getLevels()
+                .getOrDefault("aspect2", new LoggingLevel(LogLevel.INFO))
+                .logLevel();
+        return new AspectLogHttpRequestParam(logUtil(),  logLevel);
     }
 
     @Bean
     LogUtil logUtil() {
         return new LogUtil();
     }
-
-    @Bean
-    AspectLogHttpRequestParam aspectLogHttpRequestParam() {
-        return new AspectLogHttpRequestParam(logUtil());
-    }
-
-    @PostConstruct
-    public void init() {
-        System.out.println("Beans os ok");
-    }
-
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationPropertiesBinding
 public class CustomConverter implements Converter<String, LoggingLevel> {
-
         @Override
         public LoggingLevel convert(String from) {
             return new LoggingLevel(LogLevel.valueOf(from));
