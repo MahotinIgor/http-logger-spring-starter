@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.logging.LogLevel;
 import ru.mahotin.util.LogUtil;
-
 import java.lang.reflect.Modifier;
 import java.util.Arrays;
 
