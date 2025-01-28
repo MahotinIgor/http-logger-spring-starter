@@ -1,44 +1,14 @@
 package ru.mahotin.aspect;
 
-import jakarta.annotation.PostConstruct;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.logging.LogLevel;
-import ru.mahotin.config.CustomProperties;
-import ru.mahotin.config.LoggingLevel;
 import ru.mahotin.exception.TaskNotFoundException;
-import ru.mahotin.util.LogUtil;
-
 
 @Aspect
 public class TaskAspect {
-
-    private final LogUtil logUtil;
-    @Autowired
-    private CustomProperties customProperties;
-
-        static Logger log = (Logger)
-            LoggerFactory.getLogger(TaskAspect.class);
-
-    public TaskAspect(LogUtil logUtil) {
-        this.logUtil = logUtil;
-    }
-
-    @PostConstruct
-    public void init() {
-        logUtil.changeLoggingLevel(
-                customProperties
-                        .getLevels()
-                        .getOrDefault("aspect2", new LoggingLevel(LogLevel.INFO))
-                        .logLevel(),
-                AspectLogHttpRequestParam.class, log);
-        log.info(" Setting logging level for aspect2");
-        log.info(" If properties not found, setting default level = INFO ");
-    }
-
+    private final Logger log = LoggerFactory.getLogger(TaskAspect.class);
 
     @Around("@annotation(ru.mahotin.aspect.annotation.LogCreateEntity)")
     public Object logCreateNewEntityFromDto(final ProceedingJoinPoint joinPoint) {

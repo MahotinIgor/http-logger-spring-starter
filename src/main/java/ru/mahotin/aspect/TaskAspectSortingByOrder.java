@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 @Aspect
 public class TaskAspectSortingByOrder {
 
-    static final Logger log =
+    private final Logger log =
             LoggerFactory.getLogger(TaskAspectSortingByOrder.class);
 
     @Before("@annotation(ru.mahotin.aspect.annotation.LogTaskMapper) && args(task)")
