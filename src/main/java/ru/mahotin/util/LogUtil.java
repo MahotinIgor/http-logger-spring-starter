@@ -12,7 +12,5 @@ public class LogUtil {
              case WARN -> log.warn(msg);
              case ERROR -> log.error(msg);
          }
-
-
     }
 }

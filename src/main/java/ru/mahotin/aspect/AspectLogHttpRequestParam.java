@@ -55,7 +55,6 @@ public class AspectLogHttpRequestParam {
         }
 
         logUtil.logger(logLevel, log, "Result = " + res);
-
         return res;
     }
 }
